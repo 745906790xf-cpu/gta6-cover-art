@@ -1,0 +1,184 @@
+:root {
+  --ink: #17101f;
+  --paper: #f6efe6;
+  --accent: #ff5e3a;
+  --accent-2: #ffb03a;
+  --panel: #fffaf2;
+  --line: #e3d5c3;
+  --muted: #6f6355;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: linear-gradient(160deg, #2b1838 0%, #57203f 55%, #8a2b3d 100%);
+  color: var(--ink);
+  font: 15px/1.45 "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+.studio {
+  display: flex;
+  gap: 22px;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 100%;
+  padding: 22px;
+}
+
+.panel-controls {
+  width: 330px;
+  flex: 0 0 330px;
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  overflow-y: auto;
+  max-height: calc(100vh - 44px);
+}
+
+.brand h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.brand p { margin: 0 0 14px; color: var(--muted); font-size: 13.5px; }
+
+.group {
+  border-top: 1px solid var(--line);
+  padding: 14px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.group h2 {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a33d1f;
+}
+
+label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 13.5px; }
+
+input[type="text"], select {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid #cbb99e;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+.file-pick {
+  border: 2px dashed #d8a05a;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  background: #fff4e2;
+  font-weight: 700;
+}
+
+.file-pick input { display: block; margin: 8px auto 0; max-width: 100%; }
+
+.row { display: flex; gap: 8px; }
+.row > * { flex: 1; }
+
+button {
+  font: inherit;
+  font-weight: 700;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--ink);
+  color: #fff;
+  cursor: pointer;
+}
+
+button.ghost { background: #f3e7d3; color: var(--ink); border: 1px solid #d9c4a3; }
+button.ghost:hover { background: #ffe9c4; }
+button.wide { width: 100%; }
+button:hover { filter: brightness(1.12); }
+
+.photo-tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 54px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.photo-tray:empty::after {
+  content: "No photos yet — add your own or load a sample.";
+  color: var(--muted);
+  font-size: 12.5px;
+  align-self: center;
+}
+
+.photo-tray img {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.photo-tray img.is-chosen { border-color: var(--accent); box-shadow: 0 0 0 2px #ffd9c9; }
+
+.hint { margin: 0; font-size: 12.5px; color: var(--muted); }
+.panel-info { margin: 0; font-weight: 700; font-size: 13.5px; }
+
+.toggles { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+label.check { flex-direction: row; align-items: center; gap: 6px; font-weight: 600; }
+label.check input { accent-color: var(--accent); }
+
+.export-row { display: flex; gap: 8px; }
+.export-btn { flex: 1; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: 13px; padding: 10px 4px; }
+
+.status { margin: 0; font-size: 13px; color: var(--muted); min-height: 1.2em; }
+
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+#posterCanvas {
+  max-width: 100%;
+  max-height: calc(100vh - 44px);
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+  cursor: grab;
+  touch-action: none;
+  background: #1c1026;
+}
+
+#posterCanvas:active { cursor: grabbing; }
+
+body.shot-cover .panel-controls { display: none; }
+body.shot-cover .studio { padding: 0; gap: 0; min-height: 100vh; }
+body.shot-cover .stage { width: 100vw; height: 100vh; }
+body.shot-cover #posterCanvas {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+}

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunset Poster Studio — multi-panel cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="studio">
+  <aside class="panel-controls" aria-label="Poster controls">
+    <header class="brand">
+      <h1>Sunset Poster Studio</h1>
+      <p>Turn your photos into a bold multi-panel poster. Pick a layout, drop in photos, set the caption, export.</p>
+    </header>
+
+    <section class="group">
+      <h2>1 · Photos</h2>
+      <label class="file-pick">
+        <span>Add your photos</span>
+        <input id="photoInput" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button id="samplePier" type="button" class="ghost">Sample: Pier</button>
+        <button id="sampleBoulevard" type="button" class="ghost">Sample: Boulevard</button>
+      </div>
+      <div id="photoTray" class="photo-tray" aria-label="Loaded photos. Click a photo to place it in the selected panel."></div>
+      <button id="fillAll" type="button" class="ghost wide">Fill every panel with the selected photo</button>
+      <p class="hint">Click a panel on the poster to select it, then click a photo above to place it. Drag on the poster to reposition.</p>
+    </section>
+
+    <section class="group">
+      <h2>2 · Layout &amp; grade</h2>
+      <label>Layout
+        <select id="layoutSelect">
+          <option value="hero-stack">Hero + stacked pair</option>
+          <option value="grid-four">Four-panel grid</option>
+          <option value="wide-strip">Wide hero + bottom strip</option>
+        </select>
+      </label>
+      <label>Colour grade
+        <select id="gradeSelect">
+          <option value="sunset">Sunset</option>
+          <option value="neon-night">Neon Night</option>
+          <option value="golden-hour">Golden Hour</option>
+        </select>
+      </label>
+      <div class="toggles">
+        <label class="check"><input id="fxVignette" type="checkbox" checked> Vignette</label>
+        <label class="check"><input id="fxGrain" type="checkbox" checked> Film grain</label>
+        <label class="check"><input id="fxHalftone" type="checkbox"> Halftone dots</label>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>3 · Selected panel</h2>
+      <p id="panelInfo" class="panel-info">Panel 1 selected</p>
+      <label>Zoom <input id="zoomRange" type="range" min="1" max="3" step="0.01" value="1"></label>
+      <div class="row">
+        <button id="centerPanel" type="button" class="ghost">Centre photo</button>
+        <button id="clearPanel" type="button" class="ghost">Clear panel</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>4 · Caption</h2>
+      <label>Title <input id="titleInput" type="text" maxlength="42" value="SUNSET HEIST"></label>
+      <label>Subtitle <input id="subtitleInput" type="text" maxlength="60" value="One night on the pier"></label>
+    </section>
+
+    <section class="group">
+      <h2>5 · Export PNG</h2>
+      <label>Poster size
+        <select id="sizeSelect">
+          <option value="1080x1350">Portrait 1080 × 1350</option>
+          <option value="1080x1080">Square 1080 × 1080</option>
+          <option value="1920x1080">Landscape 1920 × 1080</option>
+        </select>
+      </label>
+      <div class="export-row">
+        <button type="button" class="export-btn" data-size="1080x1080">1080 × 1080</button>
+        <button type="button" class="export-btn" data-size="1080x1350">1080 × 1350</button>
+        <button type="button" class="export-btn" data-size="1920x1080">1920 × 1080</button>
+      </div>
+      <p id="statusLine" class="status" role="status">Ready.</p>
+    </section>
+  </aside>
+
+  <section class="stage" aria-label="Poster preview">
+    <canvas id="posterCanvas" width="1080" height="1350" aria-label="Live poster preview. Click a panel to select it; drag to move its photo."></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
